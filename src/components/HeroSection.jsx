@@ -1,4 +1,4 @@
-function LadingSection() {
+function HeroSection() {
     return (
       <main className="container px-4 py-8 lg:py-16 mx-auto">
         <div className="flex flex-col lg:flex-row items-center">
@@ -36,4 +36,4 @@ function LadingSection() {
     );
   }
 
-  export default LadingSection
+  export default HeroSection
