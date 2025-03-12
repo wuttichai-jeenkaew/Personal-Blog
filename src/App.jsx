@@ -1,7 +1,7 @@
 
 import './App.css'
 import Navbar from './components/Navbar'
-import LadingSection from './components/LadingSection'
+import HeroSection from './components/HeroSection'
 
 function App() {
   
@@ -9,7 +9,7 @@ function App() {
   return (
     <>
         <Navbar/> 
-        <LadingSection/>
+        <HeroSection/>
   
     </>
   )
