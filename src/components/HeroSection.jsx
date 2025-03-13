@@ -3,7 +3,7 @@ function HeroSection() {
       <main className="container px-4 py-8 lg:py-16 mx-auto">
         <div className="flex flex-col lg:flex-row items-center">
           <div className="lg:w-1/3 mb-8 lg:mb-0 lg:pr-8">
-            <h1 className="text-4xl lg:text-5xl font-bold mb-4" text-center>
+            <h1 className="text-4xl lg:text-5xl font-bold mb-4 lg:text-end max-lg:text-center" >
               Stay <br className="hidden lg:block" />
               Informed, <br />
               Stay Inspired
