@@ -37,7 +37,7 @@ export function SelectDemo() {
 }
 
 export function InputDemo() {
-  return <Input type="email" placeholder="Search" className="w-[366px]"/>;
+  return <Input type="email" placeholder="Search" className="w-[366px] bg-[#FFFFFF]"/>;
 }
 
 function ArticleSection() {
