@@ -37,7 +37,7 @@ function Navbar() {
     <>
       <nav className="flex items-center justify-between py-4 px-8 bg-[#F9F8F6] border-b relative">
         <a className="text-2xl font-bold">
-          koRN Blog <span className="text-green-500">.</span>
+          hh <span className="text-green-500">.</span>
         </a>
 
         <div className="flex items-center justify-center">
