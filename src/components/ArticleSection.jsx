@@ -84,6 +84,7 @@ function ArticleSection() {
           title={post.title}
           description={post.description}
           image={post.image}
+          author={post.author}
         
         />
         
