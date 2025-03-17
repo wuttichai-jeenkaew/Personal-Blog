@@ -20,7 +20,7 @@ export const blogPosts = [
       category: "Cat",
       title: "The Secret Language of Cats: Decoding Feline Communication",
       description:
-        "Unravel the mysteries of cat communication and learn how to better understand your feline friend's needs and desires.",
+        "Unravel the mysteries of cat communication and learn how to better understand your feline friend's needs and desires." ,
       author: "Thompson P.",
       date: "21 August 2024",
       likes: 123,
