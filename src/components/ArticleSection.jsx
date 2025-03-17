@@ -74,16 +74,17 @@ function ArticleSection() {
       </div>
 
 
-      <div className="lg:grid grid-cols-2 mx-auto py-8 gap-8 container">
+      <div className="mx-auto py-8 max-lg:px-8 lg:grid grid-cols-2 lg:mx-auto lg:py-8 gap-8 container">
       {blogPosts.map((post) => (
         
         <BlogCard 
           key={post.id}
           category={post.category}
           date={post.date}
-          topic={post.topic}
+          title={post.title}
           description={post.description}
           image={post.image}
+        
         />
         
       ))}

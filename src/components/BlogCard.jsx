@@ -1,6 +1,6 @@
-function BlogCard({ image, category, title, description, author, date, authorImage }) {
+function BlogCard({ image, category, title, description, author, date }) {
   return (
-    <div className="flex flex-col gap-4 ">
+    <div className="flex flex-col gap-4 py-4 ">
       <a href="#" className="relative h-[212px] sm:h-[360px]">
         <img
           className="w-full h-full object-cover rounded-md"
@@ -25,7 +25,7 @@ function BlogCard({ image, category, title, description, author, date, authorIma
         <div className="flex items-center text-sm">
           <img
             className="w-8 h-8 rounded-full mr-2"
-            src={authorImage}
+            src="https://res.cloudinary.com/dcbpjtd1r/image/upload/v1728449784/my-blog-post/xgfy0xnvyemkklcqodkg.jpg"
             alt={author}
           />
           <span>{author}</span>
