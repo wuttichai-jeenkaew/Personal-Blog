@@ -13,8 +13,8 @@ import ArticleButton from "./common/ArticleButton";
 import BlogCard from "./BlogCard";
 import { blogPosts } from "./data/blogPosts";
 
-
 export function SelectDemo() {
+  const categories = ["Highlight","Cat", "Inspiration", "General"];
   return (
     <Select>
       <SelectTrigger className="w-[366px]">
@@ -22,10 +22,10 @@ export function SelectDemo() {
       </SelectTrigger>
       <SelectContent className="bg-white">
         <SelectGroup>
-          <SelectLabel>Articles</SelectLabel>
-          <SelectItem value="1">General</SelectItem>
-          <SelectItem value="2">Cat</SelectItem>
-          <SelectItem value="3">Inspiration</SelectItem>
+          {/* <SelectLabel>Highlight</SelectLabel> */}
+          {categories.slice(1).map((c, index) => {
+            return <SelectItem key= {index} value={index}>{c}</SelectItem>;
+          })}
         </SelectGroup>
       </SelectContent>
     </Select>
@@ -43,6 +43,7 @@ export function InputDemo() {
 }
 
 function ArticleSection() {
+  const categories = ["Cat", "Inspiration", "General"];
   return (
     <>
       {/* Mobile */}
@@ -64,31 +65,29 @@ function ArticleSection() {
       <div className=" max-lg:hidden bg-[#EFEEEB] container px-4 py-4  mx-auto rounded-[16px] flex flex-row justify-between ">
         <div className="px-4">
           <button className="w-[113px] h-[48px] bg-[#DAD6D1]">Highlight</button>
-          <ArticleButton text="Cat" />
-          <ArticleButton text="inspiration" />
-          <ArticleButton text="General" />
+          {categories.map((c)=> {
+            return <ArticleButton key={c} text={c}/>
+          })}
+
+
         </div>
         <div className="px-4 py-2">
           <InputDemo />
         </div>
       </div>
 
-
       <div className="mx-auto py-8 max-lg:px-8 lg:grid grid-cols-2 lg:mx-auto lg:py-8 gap-8 container">
-      {blogPosts.map((post) => (
-        
-        <BlogCard 
-          key={post.id}
-          category={post.category}
-          date={post.date}
-          title={post.title}
-          description={post.description}
-          image={post.image}
-          author={post.author}
-        
-        />
-        
-      ))}
+        {blogPosts.map((post) => (
+          <BlogCard
+            key={post.id}
+            category={post.category}
+            date={post.date}
+            title={post.title}
+            description={post.description}
+            image={post.image}
+            author={post.author}
+          />
+        ))}
       </div>
 
       {/*   <div className="lg:grid grid-cols-2 mx-auto py-8 container ">

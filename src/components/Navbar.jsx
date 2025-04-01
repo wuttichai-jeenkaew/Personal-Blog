@@ -47,7 +47,7 @@ function Navbar() {
         </div>
 
         <div className="hidden md:flex space-x-4">
-          <button className="px-9 py-2 rounded-full border">Log in</button>
+          <button className="px-8 py-2 rounded-full border">Log in</button>
           <button className="px-8 py-2 bg-gray-900 text-white rounded-full hover:bg-gray-700 transition-colors">
             Sign up
           </button>
