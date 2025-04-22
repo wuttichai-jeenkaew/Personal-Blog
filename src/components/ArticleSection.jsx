@@ -52,10 +52,11 @@ function ArticleSection() {
   const categories = ["Cat", "Inspiration", "General"];
   const dataFromPosts = dataPosts.posts || [];
 
+
   function formatDate(isoDate) {
     const date = new Date(isoDate);
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    return date.toLocaleDateString('en-GB', options);
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    return date.toLocaleDateString("en-GB", options);
   }
   function categoryName(categoryId) {
     if (categoryId === 0) {
