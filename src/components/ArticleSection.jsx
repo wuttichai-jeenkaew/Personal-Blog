@@ -11,10 +11,11 @@ import {
 } from "@/components/ui/select";
 import ArticleButton from "./common/ArticleButton";
 import BlogCard from "./BlogCard";
-import { blogPosts } from "./data/blogPosts";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 export function SelectDemo() {
-  const categories = ["Highlight","Cat", "Inspiration", "General"];
+  const categories = ["Highlight", "Cat", "Inspiration", "General"];
   return (
     <Select>
       <SelectTrigger className="w-[366px]">
@@ -24,7 +25,11 @@ export function SelectDemo() {
         <SelectGroup>
           {/* <SelectLabel>Highlight</SelectLabel> */}
           {categories.slice(1).map((c, index) => {
-            return <SelectItem key= {index} value={index}>{c}</SelectItem>;
+            return (
+              <SelectItem key={index} value={index}>
+                {c}
+              </SelectItem>
+            );
           })}
         </SelectGroup>
       </SelectContent>
@@ -43,7 +48,43 @@ export function InputDemo() {
 }
 
 function ArticleSection() {
+  const [dataPosts, setDataPosts] = useState([]);
   const categories = ["Cat", "Inspiration", "General"];
+  const dataFromPosts = dataPosts.posts || [];
+
+  function formatDate(isoDate) {
+    const date = new Date(isoDate);
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString('en-GB', options);
+  }
+  function categoryName(categoryId) {
+    if (categoryId === 0) {
+      return "Highlight";
+    }
+    if (categoryId === 1) {
+      return "Cat";
+    }
+    if (categoryId === 2) {
+      return "Inspiration";
+    }
+    if (categoryId === 3) {
+      return "General";
+    }
+  }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:4000/posts");
+        console.log(response.data.posts);
+        setDataPosts(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <>
       {/* Mobile */}
@@ -65,11 +106,9 @@ function ArticleSection() {
       <div className=" max-lg:hidden bg-[#EFEEEB] container px-4 py-4  mx-auto rounded-[16px] flex flex-row justify-between ">
         <div className="px-4">
           <button className="w-[113px] h-[48px] bg-[#DAD6D1]">Highlight</button>
-          {categories.map((c)=> {
-            return <ArticleButton key={c} text={c}/>
+          {categories.map((c) => {
+            return <ArticleButton key={c} text={c} />;
           })}
-
-
         </div>
         <div className="px-4 py-2">
           <InputDemo />
@@ -77,11 +116,11 @@ function ArticleSection() {
       </div>
 
       <div className="mx-auto py-8 max-lg:px-8 lg:grid grid-cols-2 lg:mx-auto lg:py-8 gap-8 container">
-        {blogPosts.map((post) => (
+        {dataFromPosts.map((post) => (
           <BlogCard
             key={post.id}
-            category={post.category}
-            date={post.date}
+            category={categoryName(post.category_id)}
+            date={formatDate(post.date)}
             title={post.title}
             description={post.description}
             image={post.image}
@@ -90,15 +129,12 @@ function ArticleSection() {
         ))}
       </div>
 
-      {/*   <div className="lg:grid grid-cols-2 mx-auto py-8 container ">
-        <BlogCard image="https://res.cloudinary.com/dcbpjtd1r/image/upload/v1728449771/my-blog-post/e739huvlalbfz9eynysc.jpg" category="General"
-        alt="The Art of Mindfulness: Finding Peace in a Busy World" title="The Art of Mindfulness: Finding Peace in a Busy World" description="Discover the transformative power of mindfulness and how it can help you navigate the challenges of modern life with greater ease and contentment." author="Thompson P." date="11 September 2024"/>
-        <BlogCard image="https://res.cloudinary.com/dcbpjtd1r/image/upload/v1728449771/my-blog-post/gsutzgam24abrvgee9r4.jpg" category="Cat" alt="The Secret Language of Cats: Decoding Feline Communication" title="The Secret Language of Cats: Decoding Feline Communication" description="Unravel the mysteries of cat communication and learn how to better understand your feline friend's needs and desires." author="Thompson P." date="21 August 2024"/>
-        <BlogCard image="https://res.cloudinary.com/dcbpjtd1r/image/upload/v1728449771/my-blog-post/zzye4nxfm3pmh81z7hni.jpg" alt="Embracing Change: How to Thrive in Times of Transition" category="Inspiration" title="Embracing Change: How to Thrive in Times of Transition" description="Learn powerful strategies to navigate life's changes with grace and emerge stronger on the other side.." author="Thompson P." date="23 March 2024"/>
-        <BlogCard image="https://res.cloudinary.com/dcbpjtd1r/image/upload/v1728449771/my-blog-post/e0haxst38li4g8i0vpsr.jpg" category="General" alt="The Future of Work: Adapting to a Digital-First Economy" title="The Future of Work: Adapting to a Digital-First Economy" description="Explore how technology is reshaping the workplace and learn skills to succeed in the evolving job market." author="Thompson P." date="23 May 2024"/>
-        <BlogCard image="https://res.cloudinary.com/dcbpjtd1r/image/upload/v1728449771/my-blog-post/g8qpepvgnz6gioylyhrz.jpg" category="Inspiration" alt="" title="The Power of Habits: Small Changes, Big Results" description="Discover how small, consistent habits can lead to significant personal and professional growth over time." author="Thompson P." date="23 June 2024"/>
-        <BlogCard image="https://res.cloudinary.com/dcbpjtd1r/image/upload/v1728449771/my-blog-post/koydfh6jpmzhtxvwein3.jpg" category="Cat" alt="The Future of Work: Adapting to a Digital-First Economy" title="Cat Nutrition: A Guide to Feeding Your Feline Friend" description="Learn about the nutritional needs of cats and how to provide a balanced diet for optimal health and longevity." author="Thompson P." date="21 July 2024"/>
-        </div> */}
+      {/* View More Button */}
+      <div className="flex justify-center py-8">
+        <button className="px-6 py-2 bg-[#DAD6D1] rounded-[8px] text-[16px] font-medium">
+          View More
+        </button>
+      </div>
     </>
   );
 }
