@@ -1,4 +1,9 @@
+import { useNavigate } from "react-router-dom";
+
+
 function BlogCard({ image, category, title, description, author, date }) {
+  const navigate = useNavigate();
+
   return (
     <div className="flex flex-col gap-4 py-4 ">
       <a href="#" className="relative h-[212px] sm:h-[360px]">
@@ -6,6 +11,7 @@ function BlogCard({ image, category, title, description, author, date }) {
           className="w-full h-full object-cover rounded-md"
           src={image}
           alt={title}
+          onClick={() => navigate(`/view/${post.id}`)}
         />
       </a>
       <div className="flex flex-col">
