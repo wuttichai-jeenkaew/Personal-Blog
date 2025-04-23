@@ -41,9 +41,9 @@ function Navbar() {
         </a>
 
         <div className="flex items-center justify-center">
-          <button className="lg:hidden ">
+          <div className="lg:hidden ">
            <HamburgerMenu/>
-          </button>
+          </div>
         </div>
 
         <div className="hidden md:flex space-x-4">
