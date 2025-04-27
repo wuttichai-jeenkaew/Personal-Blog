@@ -19,9 +19,10 @@ function ViewPage() {
     }
     try {
       const response = await axios.get(
-        `https://server-blog-post-dcvozxhq1-wuttichai-js-projects.vercel.app/posts/${params.postId}`
+        `https://server-blog-post-git-main-wuttichai-js-projects.vercel.app/posts/${params.postId}`
       );
       setDataPosts(response.data);
+      console.log(dataPosts);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -29,6 +30,7 @@ function ViewPage() {
 
   useEffect(() => {
     getData();
+    
   }, [params?.postId]);
 
   const MarkdownRenderer = ({ content }) => {
