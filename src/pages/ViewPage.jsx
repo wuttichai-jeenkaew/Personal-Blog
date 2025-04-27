@@ -19,7 +19,7 @@ function ViewPage() {
     }
     try {
       const response = await axios.get(
-        `https://server-blog-post-dcvozxhq1-wuttichai-js-projects.vercel.app/${params.postId}`
+        `https://server-blog-post-dcvozxhq1-wuttichai-js-projects.vercel.app/posts/${params.postId}`
       );
       setDataPosts(response.data);
     } catch (error) {
