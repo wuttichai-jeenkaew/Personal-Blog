@@ -31,7 +31,7 @@ export function SelectDemo({setDataPosts, setCurrentPage}) {
         data = 3;
       }
       const response = await axios.get(
-        `http://localhost:4000/posts?category=${data}`
+        `https://server-blog-post-git-main-wuttichai-js-projects.vercel.app=${data}`
       );
       setDataPosts(response.data.posts);
       setCurrentPage(1);
@@ -128,7 +128,7 @@ function ArticleSection() {
     try {
       setIsLoading(true);
       
-      let url = `http://localhost:4000/posts?page=1`;
+      let url = `https://server-blog-post-git-main-wuttichai-js-projects.vercel.app/posts?page=1`;
       
       // เพิ่มพารามิเตอร์หมวดหมู่ถ้ามีการกำหนด (และไม่ใช่ Highlight)
       if (categoryId !== null) {
@@ -159,7 +159,7 @@ function ArticleSection() {
     try {
       setIsLoading(true);
       
-      let url = `http://localhost:4000/posts?page=${page}`;
+      let url = `https://server-blog-post-git-main-wuttichai-js-projects.vercel.app/posts?page=${page}`;
       
       // เพิ่มพารามิเตอร์หมวดหมู่ถ้ามีการกำหนด
       if (activeCategory !== null) {
@@ -201,7 +201,7 @@ function ArticleSection() {
   const handleSearch = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:4000/posts?keyword=${search}`
+        `https://server-blog-post-git-main-wuttichai-js-projects.vercel.app/posts?keyword=${search}`
       );
       setDataSearch(response.data.posts);
     } catch (error) {
