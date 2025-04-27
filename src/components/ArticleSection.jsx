@@ -9,7 +9,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import ArticleButton from "./common/ArticleButton";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate} from "react-router-dom";
@@ -69,12 +68,13 @@ export function SelectDemo({setDataPosts, setCurrentPage}) {
   );
 }
 
-export function InputDemo({setSearch, setCloseTags}) {
+export function InputDemo({setSearch, setCloseTags, search}) {
   return (
     <Input
       type="text"
       placeholder="Search"
-      className="w-[100] bg-[#FFFFFF]"
+      className="w-full bg-[#FFFFFF]"
+      value={search}
       onChange={(e) => {
         setSearch(e.target.value);
         setCloseTags(true);
@@ -256,7 +256,7 @@ function ArticleSection() {
           className="pl-8 pr-8 mx-auto flex flex-col justify-center"
           key="mobile-search"
         >
-          <InputDemo setSearch={setSearch} setCloseTags={setCloseTags} />
+          <InputDemo setSearch={setSearch} setCloseTags={setCloseTags} search={search} />
           {dataSearch?.map((post) => {
             return (
               <div key={post.id} className={!closeTags? "hidden" : ""}>
@@ -315,7 +315,7 @@ function ArticleSection() {
           </button>
         </div>
         <div className="px-4 py-2 relative">
-          <InputDemo setSearch={setSearch} setCloseTags={setCloseTags} />
+          <InputDemo setSearch={setSearch} setCloseTags={setCloseTags} search={search} />
           {/* แสดงผลการค้นหาในส่วน Desktop */}
           {dataSearch.length > 0 && closeTags && (
             <div className="absolute bg-white shadow-lg rounded mt-1 w-full z-10">
@@ -323,7 +323,7 @@ function ArticleSection() {
                 <div 
                   key={post.id} 
                   className="px-3 py-2 cursor-pointer hover:bg-gray-100"
-                  onClick={() => handleSelectSearchResult(post)}
+                  onClick={() => {handleSelectSearchResult(post); }}
                 >
                   {post.title}
                 </div>
